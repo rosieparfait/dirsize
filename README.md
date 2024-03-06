@@ -3,4 +3,4 @@ When I used Windows, I always found the built-in directory size uninformative. I
 
 So, this Python script just asks that you input a folder path, it'll go into all subfolders to check their size, and later print them in order, based on their size.
 
-I've still yet to try this in MacOS, but it works on Windows 10 & 11. :)
+It works on Windows 10/11 and ARM MacOS 14.0, but sometimes on the Mac the exact sizes are slightly off, but I believe it still shows the big picture.
