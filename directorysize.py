@@ -6,7 +6,7 @@ import collections
 getcontext().prec = 28
 
 
-def format_bytes(bytes):
+def format_bytes(bytes): # Formats raw byte number to shorten it.
     formatted = Decimal(bytes)
     order = 0
 
@@ -32,12 +32,12 @@ def folder_size(folder, order = 0):
 
                 # print("found file " + element.name)
 
-            elif element.is_dir() and element.name != "OneDrive":
-                subsize = folder_size(element.path, order + 1)
+            elif element.is_dir() and element.name != "OneDrive": # On Windows, OneDrive can still be accessed thru the User folder, let's ignore this :)
+                subsize = folder_size(element.path, order + 1) # Recursion! Might have to worry about stack size?
                 totalbytes += subsize                
 
                 if order == 0:
-                    print(element.name + "... " + format_bytes(subsize))
+                    print(element.name + "... " + format_bytes(subsize)) # Lists all direct subfolders of folder of interest.
 
                     folders[subsize] = element.name
 
