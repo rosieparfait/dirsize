@@ -25,14 +25,12 @@ def folder_size(folder, order = 0):
 
     try:
         for element in os.scandir(folder):
-            # print(element.name)
-
             if element.is_file():
                 totalbytes += os.path.getsize(element.path)
 
                 # print("found file " + element.name)
 
-            elif element.is_dir() and element.name != "OneDrive": # On Windows, OneDrive can still be accessed thru the User folder, let's ignore this :)
+            elif element.is_dir() and not element.is_symlink() and element.name != "OneDrive" and element.name != "dosdevices" and element.name != "crossover": # On Windows, OneDrive can still be accessed thru the User folder, let's ignore this :) also included a dosdevices and crossover thing cus if you have wine on mac it enters a loop
                 subsize = folder_size(element.path, order + 1) # Recursion! Might have to worry about stack size?
                 totalbytes += subsize                
 
